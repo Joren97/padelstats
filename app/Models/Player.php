@@ -9,6 +9,12 @@ class Player extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'firstname',
+        'lastname',
+        'email',
+    ];
+
     public function games(){
         return $this->belongsToMany(Game::class ,'game_player');
     }
@@ -22,7 +28,7 @@ class Player extends Model
     }
 
     public function getWinPercentageAttribute(){
-        return round($this->won_games / $this->played_games * 100, 2);
+        return $this->played_games == 0 ? 0 : round($this->won_games / $this->played_games * 100, 2);
     }
 
     public function getLostGamesAttribute(){
@@ -30,6 +36,10 @@ class Player extends Model
     }
 
     public function getLosePercentageAttribute(){
-        return round($this->lost_games / $this->played_games * 100, 2);
+        return $this->played_games == 0 ? 0 : round($this->lost_games / $this->played_games * 100, 2);
+    }
+
+    public function getPerfectGamesAttribute(){
+        return "TODO";
     }
 }

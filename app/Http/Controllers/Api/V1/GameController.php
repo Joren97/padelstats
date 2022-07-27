@@ -23,16 +23,6 @@ class GameController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \App\Http\Requests\StoreGameRequest  $request
@@ -40,7 +30,7 @@ class GameController extends Controller
      */
     public function store(StoreGameRequest $request)
     {
-        //
+        return new GameResource(Game::create($request->all()));
     }
 
     /**
@@ -52,17 +42,6 @@ class GameController extends Controller
     public function show(Game $game)
     {
         return new GameResource($game->loadMissing(['players']));
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Game  $game
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Game $game)
-    {
-        //
     }
 
     /**
