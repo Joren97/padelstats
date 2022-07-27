@@ -4,28 +4,39 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Game extends Model
 {
     use HasFactory;
 
-    public function players(){
-        return $this->belongsToMany(Player::class ,'game_player');
+    public function player_1()
+    {
+        return $this->belongsTo(Player::class , 'player_1_id', 'id');
     }
 
-    public function getTeam1Attribute(){
-        return $this->players()->where('team_id', 1)->get();
+    public function player_2()
+    {
+        return $this->belongsTo(Player::class , 'player_2_id', 'id');
     }
 
-    public function getTeam2Attribute(){
-        return $this->players()->where('team_id', 2)->get();
+    public function player_3()
+    {
+        return $this->belongsTo(Player::class , 'player_3_id', 'id');
     }
 
-    public function getTeam1ScoreAttribute(){
-        return $this->players()->where('team_id', 1)->max('score');
+    public function player_4()
+    {
+        return $this->belongsTo(Player::class , 'player_4_id', 'id');
     }
 
-    public function getTeam2ScoreAttribute(){
-        return $this->players()->where('team_id', 2)->max('score');
+    public function getTeam1Attribute()
+    {
+        return [$this->player_1, $this->player_2];
+    }
+
+    public function getTeam2Attribute()
+    {
+        return [$this->player_3, $this->player_4];
     }
 }

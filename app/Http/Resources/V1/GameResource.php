@@ -18,10 +18,10 @@ class GameResource extends JsonResource
             'id' => $this->id,
             'team1' => $this->team1,
             'team2' => $this->team2,
-            'team1Score' => $this->team1Score,
-            'team2Score' => $this->team2Score,
+            'team1Score' => $this->score_team_1,
+            'team2Score' => $this->score_team_2,
             'game_datetime' => $this->game_datetime,
-            'winningTeam' => $this->team1Score > $this->team2Score ? $this->team1 : $this->team2,
+            'winningTeam' => $this->score_team_1 > $this->score_team_2 ? $this->team1 : $this->team2,
         ];
     }
 }

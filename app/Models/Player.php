@@ -15,31 +15,31 @@ class Player extends Model
         'email',
     ];
 
-    public function games(){
-        return $this->belongsToMany(Game::class ,'game_player');
+    public function teams(){
+        return $this->belongsToMany(Team::class);
     }
 
-    public function getPlayedGamesAttribute(){
-        return $this->games()->where('score', '!=', NULL)->count();
-    }
+    // public function getPlayedGamesAttribute(){
+    //     return $this->games()->where('score', '!=', NULL)->count();
+    // }
 
-    public function getWonGamesAttribute(){
-        return $this->games()->where('score', '!=', NULL)->whereIn('score', [6,9])->count();
-    }
+    // public function getWonGamesAttribute(){
+    //     return $this->games()->where('score', '!=', NULL)->whereIn('score', [6,9])->count();
+    // }
 
-    public function getWinPercentageAttribute(){
-        return $this->played_games == 0 ? 0 : round($this->won_games / $this->played_games * 100, 2);
-    }
+    // public function getWinPercentageAttribute(){
+    //     return $this->played_games == 0 ? 0 : round($this->won_games / $this->played_games * 100, 2);
+    // }
 
-    public function getLostGamesAttribute(){
-        return $this->games()->where('score', '!=', NULL)->whereNotIn('score', [6,9])->count();
-    }
+    // public function getLostGamesAttribute(){
+    //     return $this->games()->where('score', '!=', NULL)->whereNotIn('score', [6,9])->count();
+    // }
 
-    public function getLosePercentageAttribute(){
-        return $this->played_games == 0 ? 0 : round($this->lost_games / $this->played_games * 100, 2);
-    }
+    // public function getLosePercentageAttribute(){
+    //     return $this->played_games == 0 ? 0 : round($this->lost_games / $this->played_games * 100, 2);
+    // }
 
-    public function getPerfectGamesAttribute(){
-        return "TODO";
-    }
+    // public function getPerfectGamesAttribute(){
+    //     return "TODO";
+    // }
 }
