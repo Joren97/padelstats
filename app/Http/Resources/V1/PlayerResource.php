@@ -19,13 +19,18 @@ class PlayerResource extends JsonResource
             'firstname' => $this->firstname,
             'lastname' => $this->lastname,
             'email' => $this->email,
-            // 'wonGames' => $this->won_games,
+            'wonGames' => $this->won_games,
             // 'winPercentage' => $this->win_percentage,
             // 'lostGames' => $this->lost_games,
             // 'losePercentage' => $this->lose_percentage,
             // 'games' => new GameCollection($this->games),
             // 'perfectGames' => $this->perfect_games,
-            'teams' => new TeamCollection($this->teams)
+            'games' => new GameSmallCollection($this->games),
+            // 'player1Games' => new GameSmallCollection($this->player1Games),
+            // 'player2Games' => new GameSmallCollection($this->player2Games),
+            // 'player3Games' => new GameSmallCollection($this->player3Games),
+            // 'player4Games' => new GameSmallCollection($this->player4Games),
+            'playedGames' => $this->played_games,
         ];
     }
 }
