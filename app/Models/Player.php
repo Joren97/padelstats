@@ -62,22 +62,28 @@ class Player extends Model
 
     public function getWonGamesAttribute()
     {
-        return $this->team_1_games->where('score_team_1', '>', 'score_team_2')->count();
+        return $this->player1Games()->whereRaw('score_team_1 > score_team_2')->count()
+            + $this->player2Games()->whereRaw('score_team_1 > score_team_2')->count()
+            + $this->player3Games()->whereRaw('score_team_1 < score_team_2')->count()
+            + $this->player4Games()->whereRaw('score_team_1 < score_team_2')->count();
     }
-
-// public function getWinPercentageAttribute(){
-//     return $this->played_games == 0 ? 0 : round($this->won_games / $this->played_games * 100, 2);
-// }
-
-// public function getLostGamesAttribute(){
-//     return $this->games()->where('score', '!=', NULL)->whereNotIn('score', [6,9])->count();
-// }
-
-// public function getLosePercentageAttribute(){
-//     return $this->played_games == 0 ? 0 : round($this->lost_games / $this->played_games * 100, 2);
-// }
-
-// public function getPerfectGamesAttribute(){
-//     return "TODO";
-// }
+    public function getWinPercentageAttribute()
+    {
+        return $this->played_games == 0 ? 0 : round($this->won_games / $this->played_games * 100, 2);
+    }
+    public function getLostGamesAttribute()
+    {
+        return $this->played_games - $this->won_games;
+    }
+    public function getLosePercentageAttribute()
+    {
+        return $this->played_games == 0 ? 0 : round($this->lost_games / $this->played_games * 100, 2);
+    }
+    public function getPerfectGamesAttribute()
+    {
+        return $this->player1Games()->whereIn('score_team_1', [6, 9])->where('score_team_2', '=', 0)->count()
+            + $this->player2Games()->whereIn('score_team_1', [6, 9])->where('score_team_2', '=', 0)->count()
+            + $this->player3Games()->whereIn('score_team_2', [6, 9])->where('score_team_1', '=', 0)->count()
+            + $this->player4Games()->whereIn('score_team_2', [6, 9])->where('score_team_1', '=', 0)->count();
+    }
 }
