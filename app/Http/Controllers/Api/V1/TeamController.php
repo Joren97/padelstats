@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api\V1;
 
 use App\Models\Team;
 use App\Http\Requests\StoreTeamRequest;
 use App\Http\Requests\UpdateTeamRequest;
+use App\Http\Controllers\Controller;
 
 class TeamController extends Controller
 {
@@ -13,9 +14,9 @@ class TeamController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        return $request;
     }
 
     /**
@@ -25,7 +26,7 @@ class TeamController extends Controller
      */
     public function create()
     {
-        //
+    //
     }
 
     /**
@@ -36,7 +37,7 @@ class TeamController extends Controller
      */
     public function store(StoreTeamRequest $request)
     {
-        //
+    //
     }
 
     /**
@@ -47,7 +48,7 @@ class TeamController extends Controller
      */
     public function show(Team $team)
     {
-        //
+    //
     }
 
     /**
@@ -58,7 +59,7 @@ class TeamController extends Controller
      */
     public function edit(Team $team)
     {
-        //
+    //
     }
 
     /**
@@ -70,7 +71,7 @@ class TeamController extends Controller
      */
     public function update(UpdateTeamRequest $request, Team $team)
     {
-        //
+    //
     }
 
     /**
@@ -81,6 +82,6 @@ class TeamController extends Controller
      */
     public function destroy(Team $team)
     {
-        //
+    //
     }
 }

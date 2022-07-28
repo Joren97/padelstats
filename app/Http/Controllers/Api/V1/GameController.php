@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Models\Game;
-use App\Http\Requests\StoreGameRequest;
+use App\Http\Requests\v1\StoreGameRequest;
 use App\Http\Requests\UpdateGameRequest;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\V1\GameCollection;
@@ -25,7 +25,7 @@ class GameController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreGameRequest  $request
+     * @param  \App\Http\Requests\v1\StoreGameRequest  $request
      * @return \Illuminate\Http\Response
      */
     public function store(StoreGameRequest $request)
